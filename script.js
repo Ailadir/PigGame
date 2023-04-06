@@ -1,5 +1,3 @@
-'use strict';
-
 //Selecting elements
 const player0El = document.querySelector('.player--0');
 const player1El = document.querySelector('.player--1');
@@ -68,21 +66,20 @@ btnHold.addEventListener('click', () => {
     scores[activePlayer] += currentScore;
     document.getElementById(`score--${activePlayer}`).textContent =
       scores[activePlayer];
-    changePlayer();
-  }
-  currentScore = 0;
+    currentScore = 0;
 
-  //Check win condition || next player turn
-  if (scores[activePlayer] >= 100) {
-    document
-      .querySelector(`.player--${activePlayer}`)
-      .classList.add('player--winner');
-    document
-      .querySelector(`.player--${activePlayer}`)
-      .classList.remove('player--active');
-    playing = false;
-  } else {
-    switchPlayer;
+    //Check win condition || next player turn
+    if (scores[activePlayer] >= 15) {
+      document
+        .querySelector(`.player--${activePlayer}`)
+        .classList.add('player--winner');
+      document
+        .querySelector(`.player--${activePlayer}`)
+        .classList.remove('player--active');
+      playing = false;
+    } else {
+      changePlayer();
+    }
   }
 });
 
@@ -90,11 +87,18 @@ btnHold.addEventListener('click', () => {
 
 btnNew.addEventListener('click', init);
 
-// document.addEventListener('keydown', e => {
-//   if (e.key === 'Enter') {
-//     player1El.classList.remove('player--active');
-//     player1El.classList.add('player--winner');
-//     score1El.textContent = 100;
-//     playing = false;
-//   }
-// });
+// It't little cheat for active player, just push enter and try.
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Enter') {
+    document
+      .querySelector(`.player--${activePlayer}`)
+      .classList.add('player--winner');
+    document
+      .querySelector(`.player--${activePlayer}`)
+      .classList.remove('player--active');
+    document.getElementById(`score--${activePlayer}`).textContent = 100;
+    playing = false;
+  }
+});
+
