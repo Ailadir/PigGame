@@ -69,7 +69,7 @@ btnHold.addEventListener('click', () => {
     currentScore = 0;
 
     //Check win condition || next player turn
-    if (scores[activePlayer] >= 15) {
+    if (scores[activePlayer] >= 100) {
       document
         .querySelector(`.player--${activePlayer}`)
         .classList.add('player--winner');
